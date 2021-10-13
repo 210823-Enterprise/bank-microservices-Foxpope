@@ -83,6 +83,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+		</dependency>
 	</dependencies>
 
 	<!-- Copied from ConfigServer -->
@@ -107,7 +111,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>sophiagavrila/${project.artifactId}</name>
+						<name>rtaleb01/${project.artifactId}</name>
 					</image>
 					<excludes>
 						<exclude>

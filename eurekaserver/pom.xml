@@ -67,7 +67,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>sophiagavrila/${project.artifactId}</name>
+						<name>rtaleb01/${project.artifactId}</name>
 					</image>
 				</configuration>
 			</plugin>

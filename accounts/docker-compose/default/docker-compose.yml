@@ -3,7 +3,7 @@ version: "3.8"
 services:
 
   configserver:
-    image: sophiagavrila/configserver:latest
+    image: rtaleb01/configserver:latest
     mem_limit: 700m
     ports:
       - "8071:8071"
@@ -11,7 +11,7 @@ services:
      - bank
      
   eurekaserver:
-    image: sophiagavrila/eurekaserver:latest
+    image: rtaleb01/eurekaserver:latest
     mem_limit: 700m
     ports:
       - "8070:8070"
@@ -32,7 +32,7 @@ services:
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
 
   accounts:
-    image: sophiagavrila/accounts
+    image: rtaleb01/accounts
     mem_limit: 700m
     ports:
       - "8080:8080"
@@ -58,7 +58,7 @@ services:
        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka/
     
   loans:
-    image: sophiagavrila/loans
+    image: rtaleb01/loans
     mem_limit: 700m
     ports:
       - "8090:8090"
@@ -78,7 +78,7 @@ services:
        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka/
     
   cards:
-    image: sophiagavrila/cards
+    image: rtaleb01/cards
     mem_limit: 700m
     ports:
       - "9000:9000"
