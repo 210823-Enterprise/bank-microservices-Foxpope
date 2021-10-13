@@ -20,5 +20,5 @@ public interface CardsFeignClient {
 
 	// Indicate the path that you want to invoke (within cards' controller)
 	@RequestMapping(method = RequestMethod.POST, value = "myCards", consumes = "application/json") 
-	List<Cards> getCardDetails(@RequestBody Customer customer); // pass a customer obj, extract id, retrieve cards details
+	List<Cards> getCardDetails(@RequestHeader("bank-correlation-id") String correlationId, @RequestBody Customer customer); // pass a customer obj, extract id, retrieve cards details
 }
