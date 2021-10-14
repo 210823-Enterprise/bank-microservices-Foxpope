@@ -27,6 +27,7 @@ import com.revature.accounts.service.client.LoansFeignClient;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.micrometer.core.annotation.Timed;
 
 @RestController
 public class AccountsController {
@@ -50,6 +51,7 @@ public class AccountsController {
 	 * object based on account found by that cusomter's ID.
 	 */
 	@PostMapping("/myAccount")
+	@Timed(value = "getAccountDetails.time", description = "time taken to return account details")
 	public Accounts getAccountDetails(@RequestBody Customer customer) {
 
 		Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId());
