@@ -22,20 +22,28 @@ import com.revature.cards.repository.CardsRepository;
 
 @RestController
 public class CardsController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(CardsController.class);
-	
+
 	@Autowired
 	private CardsRepository cardsRepository;
-	
+
 	@Autowired
 	CardsServiceConfig cardsConfig;
 
+	/**
+	 * @param correlationid - received from AccountsController's invocation of
+	 *                      CardsFeignClient in accounts service. This method takes
+	 *                      in the forwarded trace ID as a Request Header.
+	 */
 	@PostMapping("/myCards")
-	public List<Cards> getCardDetails(@RequestHeader("bank-correlation-id") String correlationId, @RequestBody Customer customer) {
-		
+	public List<Cards> getCardDetails(@RequestHeader("bank-correlation-id") String correlationid,
+			@RequestBody Customer customer) {
+
+		logger.info("getCardDetails() method started");
 		List<Cards> cards = cardsRepository.findByCustomerId(customer.getCustomerId());
-		
+		logger.info("getCardDetails() method ended");
+
 		if (cards != null) {
 			return cards;
 		} else {
@@ -51,6 +59,5 @@ public class CardsController {
 		String jsonStr = ow.writeValueAsString(properties);
 		return jsonStr;
 	}
-	
-	
+
 }

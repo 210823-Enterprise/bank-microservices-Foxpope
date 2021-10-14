@@ -12,14 +12,16 @@ import org.springframework.web.server.ServerWebExchange;
 
 import reactor.core.publisher.Mono;
 
-
+/**
+ * If you have multiple pre-filters, you can mention the order in which they
+ * execute when a request comes in, chaining one after the other.
+ */
 @Order(1)
 @Component
-public class RequestTraceFilter implements GlobalFilter{
+public class RequestTraceFilter implements GlobalFilter {
 
 	private static final Logger logger = LoggerFactory.getLogger(RequestTraceFilter.class);
 
-    // Utilie FilterUtility to set Request Headers
 	@Autowired
 	FilterUtility filterUtility;
 
@@ -64,5 +66,5 @@ public class RequestTraceFilter implements GlobalFilter{
 	private String generateCorrelationId() {
 		return java.util.UUID.randomUUID().toString();
 	}
-	
+
 }

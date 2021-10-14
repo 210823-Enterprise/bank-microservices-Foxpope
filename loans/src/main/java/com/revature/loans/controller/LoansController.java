@@ -32,14 +32,13 @@ public class LoansController {
 	@Autowired
 	LoansServiceConfig loansConfig;
 
-	/**
-	 * Return all Loans objects that belong to a customer based on the Customer Id
-	 * of the object passed through as the HTTP Request Body. 
-	 */
+	
 	@PostMapping("/myLoans")
-	public List<Loans> getLoansDetails(@RequestHeader("bank-correlation-id") String correlationId, @RequestBody Customer customer) {
+	public List<Loans> getLoansDetails(@RequestHeader("bank-correlation-id") String correlationid, @RequestBody Customer customer) {
 		
+		logger.info("getLoansDetails() method started");
 		List<Loans> loans = loansRepository.findByCustomerIdOrderByStartDtDesc(customer.getCustomerId());
+		logger.info("getLoansDetails() method ended");
 		
 		if (loans != null) {
 			return loans;
